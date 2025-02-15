@@ -1,21 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>محصولات</h2>
-  {% if category %}
-    <h3>دسته: {{ category.name }}</h3>
-  {% endif %}
-  <div class="row">
-    {% for product in products %}
-      <div class="col-md-4 mb-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">{{ product.price }} تومان</p>
-            <a href="{% url 'products:product_detail' product.id product.slug %}" class="btn btn-primary">جزئیات</a>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+<h2 class="text-xl font-semibold mb-4">محصولات</h2>
+{% if category %}
+  <h3 class="text-lg mb-4">دسته: {{ category.name }}</h3>
+{% endif %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {% for product in products %}
+    <div class="bg-white rounded-lg shadow p-4">
+      <h5 class="text-lg font-bold mb-2">{{ product.name }}</h5>
+      <p class="text-gray-600 mb-2">{{ product.price }} تومان</p>
+      <a href="{% url 'products:product_detail' product.id product.slug %}" class="block text-center bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">جزئیات</a>
+    </div>
+  {% endfor %}
+</div>
 {% endblock %}

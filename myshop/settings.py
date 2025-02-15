@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'products',
+    'widget_tweaks',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -51,11 +54,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myshop.urls'
 
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # در صورت استفاده از پوشه مرکزی قالب‌ها
+        'APP_DIRS': True,  # این گزینه اجازه می‌دهد Django به دنبال قالب‌ها در پوشه templates هر اپ بگردد
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -66,6 +74,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'myshop.wsgi.application'
 
